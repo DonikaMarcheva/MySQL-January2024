@@ -1,3 +1,6 @@
+use minions;
+
+
 CREATE TABLE minions (
     id INT AUTO_INCREMENT,
     name VARCHAR(80),
@@ -15,10 +18,13 @@ CREATE TABLE towns (
     PRIMARY KEY (town_id)
 );
 
-USE minions;
-
 ALTER TABLE minions
 ADD COLUMN town_id int;
 
 ALTER TABLE minions
 ADD constraint fk_town_id FOREIGN KEY (town_id) references towns(id);
+
+INSERT INTO towns(name) VALUE('Sofia');
+INSERT INTO towns(name) VALUE('Plovdiv');
+INSERT INTO towns(name) VALUE('Varna');
+
