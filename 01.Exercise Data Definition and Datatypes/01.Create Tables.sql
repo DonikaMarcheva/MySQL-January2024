@@ -75,3 +75,8 @@ INSERT INTO users(username, password, profile_picture, last_login_time, is_delet
 ('Ivan', '123', 'test', NOW(), false),
 ('Dragan', '123', 'test', NOW(), false),
 ('Petkan', '123', 'test', NOW(), false);
+
+
+ALTER TABLE users
+DROP PRIMARY KEY,
+ADD PRIMARY KEY(id, username)
