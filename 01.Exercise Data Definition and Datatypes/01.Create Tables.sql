@@ -37,4 +37,23 @@ TRUNCATE TABLE minions;
 DROP TABLE minions;
 DROP TABLE towns;
 
-select * from minions
+
+
+CREATE TABLE people(
+id INT NOT NULL auto_increment PRIMARY KEY,
+name varchar(200) NOT NULL,
+picture BLOB,
+height DOUBLE(6,2),
+weight DOUBLE(6,2),
+gender CHAR(1) NOT NULL,
+birthdate DATE NOT NULL,
+biography BLOB
+);
+
+INSERT INTO people(name, picture, height, weight, gender, birthdate, biography) VALUES 
+('Ivan', 'test', 1.90, 90, 'm', '1980-10-30','test'),
+('Dragan', 'test', 1.90, 90, 'm', '1980-10-30','test'),
+('Petkan', 'test', 1.90, 90, 'm', '1980-10-30','test'),
+('Pesho', 'test', 1.90, 90, 'm', '1980-10-30','test'),
+('Gosho', 'test', 1.90, 90, 'm', '1980-10-30','test');
+
