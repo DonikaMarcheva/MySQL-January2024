@@ -57,3 +57,21 @@ INSERT INTO people(name, picture, height, weight, gender, birthdate, biography) 
 ('Pesho', 'test', 1.90, 90, 'm', '1980-10-30','test'),
 ('Gosho', 'test', 1.90, 90, 'm', '1980-10-30','test');
 
+
+
+
+CREATE TABLE users(
+id INT NOT NULL PRIMARY KEY UNIQUE AUTO_INCREMENT,
+username VARCHAR(30) UNIQUE NOT NULL,
+password VARCHAR(26) NOT NULL,
+profile_picture BLOB,
+last_login_time DATETIME,
+is_deleted BOOL
+);
+
+INSERT INTO users(username, password, profile_picture, last_login_time, is_deleted) VALUES
+('Pesho', '123', 'test', NOW(), false),
+('Gosho', '123', 'test', NOW(), false),
+('Ivan', '123', 'test', NOW(), false),
+('Dragan', '123', 'test', NOW(), false),
+('Petkan', '123', 'test', NOW(), false);
