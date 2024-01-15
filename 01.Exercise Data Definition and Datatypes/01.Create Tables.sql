@@ -79,4 +79,9 @@ INSERT INTO users(username, password, profile_picture, last_login_time, is_delet
 
 ALTER TABLE users
 DROP PRIMARY KEY,
-ADD PRIMARY KEY(id, username)
+ADD PRIMARY KEY(id, username);
+
+
+
+ALTER TABLE users
+CHANGE last_login_time last_login_time DATETIME DEFAULT NOW();
