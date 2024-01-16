@@ -20,4 +20,4 @@ SELECT
 FROM
     employees;
 
-
+SELECT DISTINCT salary FROM employees;
