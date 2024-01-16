@@ -28,3 +28,7 @@ ORDER BY employee_id;
 SELECT first_name, last_name, job_title FROM employees
 WHERE salary BETWEEN 20000 AND 30000
 ORDER BY employee_id;
+
+SELECT
+CONCAT_WS(first_name, middle_name, last_name) AS 'Full name'
+WHERE salary=25000 OR  salary=14000 OR salary=12500 OR salary=23600;
