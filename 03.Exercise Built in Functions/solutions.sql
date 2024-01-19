@@ -23,3 +23,8 @@ SELECT name
 FROM towns
 WHERE length(name) =5 OR length(name)=6
 ORDER BY name;
+
+SELECT *
+FROM towns
+WHERE name LIKE 'M%' OR name LIKE 'K%' OR name LIKE 'B%' OR name LIKE 'E%'
+ORDER BY name;
