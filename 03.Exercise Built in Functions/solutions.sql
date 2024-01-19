@@ -28,3 +28,8 @@ SELECT *
 FROM towns
 WHERE name LIKE 'M%' OR name LIKE 'K%' OR name LIKE 'B%' OR name LIKE 'E%'
 ORDER BY name;
+
+SELECT *
+FROM towns
+WHERE name NOT LIKE 'R%' AND name NOT LIKE 'B%' AND name NOT LIKE 'D%'
+ORDER BY name;
