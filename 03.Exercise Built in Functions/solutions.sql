@@ -70,3 +70,12 @@ CONCAT(LOWER(peak_name), SUBSTR(LOWER(river_name),2)) AS mix
 FROM peaks, rivers
 WHERE right(peak_name,1)=left(river_name,1)
 ORDER BY mix;
+
+USE diablo;
+
+SELECT name, date_format(start,'%Y-%m-%d')
+FROM games
+WHERE year(start) in(2011, 2012)
+ORDER BY start, name
+LIMIT 50;
+
