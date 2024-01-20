@@ -64,3 +64,9 @@ SELECT country_name, iso_code
 FROM countries
 WHERE country_name LIKE '%A%A%A%'
 ORDER BY iso_code;
+
+SELECT peak_name, river_name,
+CONCAT(LOWER(peak_name), SUBSTR(LOWER(river_name),2)) AS mix
+FROM peaks, rivers
+WHERE right(peak_name,1)=left(river_name,1)
+ORDER BY mix;
