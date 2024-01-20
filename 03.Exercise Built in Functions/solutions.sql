@@ -79,3 +79,9 @@ WHERE year(start) in(2011, 2012)
 ORDER BY start, name
 LIMIT 50;
 
+SELECT user_name, substring(email,LOCATE('@',email)+1) AS 'email provider'
+FROM users
+ORDER BY `email provider`, user_name;
+
+
+
