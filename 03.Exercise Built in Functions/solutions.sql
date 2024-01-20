@@ -103,6 +103,17 @@ WHEN duration <=10 THEN 'Long'
 ELSE 'Extra Long'
 END
 AS `Duration`
-FROM games
+FROM games;
+
+use orders;
+
+SELECT 
+    product_name,
+    order_date,
+    DATE_ADD(order_date, INTERVAL 3 DAY) AS pay_due,
+    DATE_ADD(order_date, INTERVAL 1 MONTH) AS delivery_due
+FROM
+    orders;
+
 
 
