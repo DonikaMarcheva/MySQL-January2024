@@ -58,3 +58,9 @@ SELECT first_name, last_name
 FROM employees
 WHERE length(last_name) = 5;
 
+use geography;
+
+SELECT country_name, iso_code
+FROM countries
+WHERE country_name LIKE '%A%A%A%'
+ORDER BY iso_code;
