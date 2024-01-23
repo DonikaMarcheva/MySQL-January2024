@@ -76,8 +76,15 @@ ORDER BY first_letter;
 #12
 SELECT department_id, MIN(salary) AS minimum_salary
 FROM employees
-WHERE department_id IN (2,5,7) AND DATE(hire_date) > 01-01-2000
+WHERE department_id IN (2,5,7) AND date_format(hire_date, '%d/%c/%Y') > 01/01/2000
 GROUP BY department_id;
+
+#other easier decision
+SELECT department_id, MIN(salary) AS minimum_salary
+FROM employees
+WHERE department_id IN (2,5,7) AND hire_date>01-01-2000
+GROUP BY department_id
+
 
 
 
