@@ -86,13 +86,23 @@ WHERE department_id IN (2,5,7) AND hire_date>01-01-2000
 GROUP BY department_id;
 
 #13
+#SELECT department_id, AVG(IF(department_id=1,salary=salary+5000 ,salary)) as avg_salary
+##FROM employees
+#WHERE salary>30000 and manager_id !=42
+#GROUP BY department_id
+#ORDER BY department_id;
+
 
 #14
 SELECT department_id, MAX(salary) AS max_salary
 FROM employees
 GROUP BY department_id
 HAVING max_salary NOT BETWEEN 30000 AND 70000
-ORDER BY department_id
+ORDER BY department_id;
+
+#15
+SELECT count(employee_id) - count(manager_id)
+FROM employees
 
 
 
