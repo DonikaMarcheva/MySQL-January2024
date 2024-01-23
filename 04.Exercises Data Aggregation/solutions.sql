@@ -83,7 +83,16 @@ GROUP BY department_id;
 SELECT department_id, MIN(salary) AS minimum_salary
 FROM employees
 WHERE department_id IN (2,5,7) AND hire_date>01-01-2000
+GROUP BY department_id;
+
+#13
+
+#14
+SELECT department_id, MAX(salary) AS max_salary
+FROM employees
 GROUP BY department_id
+HAVING max_salary NOT BETWEEN 30000 AND 70000
+ORDER BY department_id
 
 
 
