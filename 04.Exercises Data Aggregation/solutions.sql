@@ -78,6 +78,7 @@ WHERE deposit_start_date> '1985-01-01'
 GROUP BY deposit_group, is_deposit_expired
 ORDER BY deposit_group DESC, is_deposit_expired;
 
+use soft_uni;
 #12
 SELECT department_id, MIN(salary) AS minimum_salary
 FROM employees
@@ -91,12 +92,28 @@ WHERE department_id IN (2,5,7) AND hire_date>01-01-2000
 GROUP BY department_id;
 
 #13
-#SELECT department_id, AVG(IF(department_id=1,salary=salary+5000 ,salary)) as avg_salary
+#75/100
+#SELECT department_id, AVG(IF(department_id, salary+5000 ,salary)) as avg_salary
 ##FROM employees
 #WHERE salary>30000 and manager_id !=42
 #GROUP BY department_id
-#ORDER BY department_id;
+#ORDER BY department_id;    
 
+SET SQL_SAFE_UPDATES = 0;
+
+CREATE TABLE highest_paid_employees
+SELECT * FROM employees
+WHERE salary>30000;
+
+DELETE FROM highest_paid_employees
+WHERE manager_id=42;
+
+UPDATE highest_paid_employees SET salary=salary+5000
+WHERE department_id=1;
+
+SELECT department_id, AVG(salary) from highest_paid_employees AS avg_salary
+GROUP BY department_id
+ORDER BY department_id;
 
 #14
 SELECT department_id, MAX(salary) AS max_salary
