@@ -72,6 +72,11 @@ GROUP BY first_letter
 ORDER BY first_letter;
 
 #11
+SELECT deposit_group, is_deposit_expired, AVG(deposit_interest) AS average_interest
+FROM wizzard_deposits
+WHERE deposit_start_date> '1985-01-01'
+GROUP BY deposit_group, is_deposit_expired
+ORDER BY deposit_group DESC, is_deposit_expired;
 
 #12
 SELECT department_id, MIN(salary) AS minimum_salary
@@ -102,7 +107,10 @@ ORDER BY department_id;
 
 #15
 SELECT count(employee_id) - count(manager_id)
-FROM employees
+FROM employees;
+
+#16
+
 
 
 
