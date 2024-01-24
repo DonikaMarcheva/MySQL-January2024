@@ -126,6 +126,11 @@ ORDER BY department_id;
 SELECT count(employee_id) - count(manager_id)
 FROM employees;
 
+#from lector
+SELECT COUNT(*)
+FROM employees
+WHERE manager_id IS NULL; 
+
 #16
 
 
