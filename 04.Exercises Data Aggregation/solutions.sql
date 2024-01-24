@@ -137,13 +137,20 @@ SELECT department_id, (SELECT DISTINCT salary
                        WHERE e.department_id=department_id
                        ORDER BY salary DESC
                        LIMIT 1 OFFSET 2) AS third_highest_salary
-FROM employees e 
+FROM employees AS e 
 GROUP BY department_id
 HAVING third_highest_salary IS NOT NULL
 ORDER BY department_id;
 
 #17
-
+SELECT first_name, last_name, department_id
+FROM employees e
+WHERE salary> (
+			   SELECT AVG(salary)
+               FROM employees
+               WHERE department_id=e.department_id)
+ORDER BY department_id, employee_id
+LIMIT 10;
 
 
 
