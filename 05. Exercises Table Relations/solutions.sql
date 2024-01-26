@@ -68,3 +68,6 @@ INSERT INTO models(model_id, name, manufacturer_id) VALUES
 (105, 'Model 3', 2),
 (106, 'Nova', 3);
 
+#3
+
+
