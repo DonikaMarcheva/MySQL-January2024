@@ -102,4 +102,23 @@ INSERT INTO students_exams(student_id, exam_id) VALUES
 (2,102),
 (2,103);
 
+#4 
+CREATE TABLE teachers (
+teacher_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(20),
+manager_id INT);
+ALTER TABLE teachers AUTO_INCREMENT=101;
+
+
+INSERT INTO teachers(name, manager_id) VALUES
+('John',null),
+('Maya', 106),
+('Silvia', 106),
+('Ted', 105),
+('Mark',101),
+('Greta',101);
+ALTER TABLE teachers
+ADD FOREIGN KEY (manager_id) REFERENCES teachers(teacher_id);
+
+
 
