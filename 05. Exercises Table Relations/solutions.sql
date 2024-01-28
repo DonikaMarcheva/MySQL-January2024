@@ -197,9 +197,14 @@ subject_id INT,
 PRIMARY KEY(student_id, subject_id),
 FOREIGN KEY(student_id) REFERENCES students(student_id),
 FOREIGN KEY(subject_id) REFERENCES subjects(subject_id)
-)
+);
 
-
+#9
+SELECT m.mountain_range, p.peak_name, p.elevation AS peak_elevation FROM peaks p
+JOIN mountains m
+ON p.mountain_id=m.id
+WHERE m.mountain_range='Rila'
+ORDER BY p.elevation DESC;
 
 
 
