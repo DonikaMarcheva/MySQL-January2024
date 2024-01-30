@@ -68,9 +68,25 @@ FROM
         JOIN
     departments AS d ON e.department_id = d.department_id
 WHERE
-    DATE(e.hire_date) > 1999 - 1 - 1
+    DATE(e.hire_date) > '1999-1-1'
         AND (d.name = 'Sales' OR d.name = 'Finance')
 ORDER BY hire_date;
+
+#7
+SELECT 
+    e.employee_id, e.first_name, p.name AS project_name
+FROM
+    employees AS e
+        JOIN
+    employees_projects AS ep ON e.employee_id = ep.employee_id
+        JOIN
+    projects AS p ON p.project_id = ep.project_id
+WHERE
+    p.end_date IS NULL
+        AND DATE(p.start_date) > '2002-08-13'
+ORDER BY e.first_name , p.name
+LIMIT 5;
+
 
 
 
