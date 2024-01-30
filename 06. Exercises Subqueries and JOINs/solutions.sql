@@ -47,3 +47,12 @@ WHERE
     e.salary > 15000
 ORDER BY d.department_id DESC
 LIMIT 5;
+
+#5
+
+SELECT DISTINCT e.employee_id, e.first_name
+FROM employees_projects AS e_p
+right JOIN employees AS e ON e_p.employee_id=e.employee_id
+WHERE e_p.employee_id is NULL
+ORDER BY employee_id DESC
+LIMIT 3;
