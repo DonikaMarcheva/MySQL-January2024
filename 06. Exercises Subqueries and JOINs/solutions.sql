@@ -49,7 +49,6 @@ ORDER BY d.department_id DESC
 LIMIT 5;
 
 #5
-
 SELECT DISTINCT
     e.employee_id, e.first_name
 FROM
@@ -60,3 +59,22 @@ WHERE
     e_p.employee_id IS NULL
 ORDER BY employee_id DESC
 LIMIT 3;
+
+#6
+SELECT 
+    e.first_name, e.last_name, e.hire_date, d.name AS dept_name
+FROM
+    employees AS e
+        JOIN
+    departments AS d ON e.department_id = d.department_id
+WHERE
+    DATE(e.hire_date) > 1999 - 1 - 1
+        AND (d.name = 'Sales' OR d.name = 'Finance')
+ORDER BY hire_date;
+
+
+
+
+
+
+
