@@ -142,7 +142,16 @@ FROM
     departments AS d ON d.department_id = e.department_id
 ORDER BY employee_id
 LIMIT 5;
-   
+
+#11
+SELECT 
+    AVG(salary) AS min_average_salary
+FROM
+    employees
+GROUP BY department_id
+ORDER BY min_average_salary
+LIMIT 1;
+
 
 
 
