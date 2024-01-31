@@ -191,6 +191,26 @@ WHERE
 ORDER BY c.country_name
 LIMIT 5;
 
+#15
+
+#16
+#first solution
+SELECT COUNT(*) AS country_count
+FROM mountains_countries mc
+RIGHT JOIN countries c ON c.country_code= mc.country_code
+GROUP BY mc.mountain_id
+HAVING mc.mountain_id IS NULL;
+
+#second solution
+SELECT COUNT(*) AS country_count
+FROM mountains_countries mc
+RIGHT JOIN countries c ON c.country_code= mc.country_code
+WHERE mc.mountain_id IS NULL;
+
+
+
+
+
 
 
 
