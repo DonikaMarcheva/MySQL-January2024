@@ -104,6 +104,30 @@ WHERE
     e.employee_id = 24
 ORDER BY `project_name`;
 
+#9
+SELECT 
+    employee_id,
+    first_name,
+    manager_id,
+    IF(manager_id = 3,
+        (SELECT 
+                first_name
+            FROM
+                employees
+            WHERE
+                employee_id = 3),
+        (SELECT 
+                first_name
+            FROM
+                employees
+            WHERE
+                employee_id = 7)) AS manager_name
+FROM
+    employees
+WHERE
+    manager_id IN (3 , 7)
+ORDER BY first_name;
+
 
 
 
