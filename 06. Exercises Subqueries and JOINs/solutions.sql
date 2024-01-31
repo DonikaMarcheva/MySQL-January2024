@@ -166,6 +166,19 @@ WHERE
         AND p.elevation > 2835
 ORDER BY p.elevation DESC;
 
+#13
+SELECT 
+    m_c.country_code, COUNT(m.mountain_range) AS mountain_range
+FROM
+    mountains_countries AS m_c
+        JOIN
+    mountains AS m ON m.id = m_c.mountain_id
+GROUP BY m_c.country_code
+HAVING m_c.country_code IN ('BG' , 'US', 'RU')
+ORDER BY mountain_range DESC;
+
+
+
 
 
 
