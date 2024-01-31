@@ -91,7 +91,7 @@ LIMIT 5;
 SELECT 
     e.employee_id,
     e.first_name,
-    IF(YEAR(p.start_date) = 2005,
+    IF(YEAR(p.start_date) >= 2005,
         p.name = NULL,
         p.name) AS project_name
 FROM
