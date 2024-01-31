@@ -177,6 +177,21 @@ GROUP BY m_c.country_code
 HAVING m_c.country_code IN ('BG' , 'US', 'RU')
 ORDER BY mountain_range DESC;
 
+#14
+SELECT 
+    c.country_name, r.river_name
+FROM
+    countries AS c
+        LEFT JOIN
+    countries_rivers AS c_r ON c_r.country_code = c.country_code
+        LEFT JOIN
+    rivers AS r ON r.id = c_r.river_id
+WHERE
+    c.continent_code = 'AF'
+ORDER BY c.country_name
+LIMIT 5;
+
+
 
 
 
