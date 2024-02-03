@@ -29,6 +29,7 @@ DELIMITER ;
 CALL usp_get_employees_salary_above (45000);
 
 #3
+#First solution
 DELIMITER $
 
 CREATE PROCEDURE usp_get_towns_starting_with (starting_chars VARCHAR(10))
@@ -37,6 +38,21 @@ SELECT name FROM towns
 WHERE LEFT(name, length(starting_chars))=starting_chars
 ORDER BY name;
 
+END $
+
+DELIMITER ;
+
+CALL usp_get_towns_starting_with  ('b');
+
+#second solution 
+DELIMITER $
+
+CREATE PROCEDURE usp_get_towns_starting_with(IN starting_string VARCHAR(10))
+BEGIN
+    SELECT name
+    FROM soft_uni.towns
+    WHERE name LIKE CONCAT(starting_string, '%')
+    ORDER BY name;
 END $
 
 DELIMITER ;
