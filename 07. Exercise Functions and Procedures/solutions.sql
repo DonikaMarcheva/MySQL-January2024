@@ -113,3 +113,43 @@ END $
 DELIMITER ;
 CALL usp_get_employees_by_salary_level('High');
 
+#7
+#first solution - check if in the word has ] or [ and replace it in order to use correct RegEx
+DELIMITER //
+
+CREATE FUNCTION ufn_is_word_comprised(set_of_letters VARCHAR(50), word VARCHAR(50))
+RETURNS INT
+BEGIN
+    DECLARE pattern VARCHAR(255);
+    
+    -- Escape special characters in the set_of_letters for safe use in REGEXP
+    SET set_of_letters = REPLACE(set_of_letters, '[', '\\[');
+    SET set_of_letters = REPLACE(set_of_letters, ']', '\\]');
+    
+    -- Build the REGEXP pattern
+    SET pattern = CONCAT('^[' , set_of_letters , ']*$');
+    
+    -- Check if the word matches the pattern
+    IF word REGEXP pattern THEN
+        RETURN 1; -- Return 1 if the word is comprised of the given set of letters
+    ELSE
+        RETURN 0; -- Return 0 otherwise
+    END IF;
+END //
+
+DELIMITER ;
+
+#second solution 
+
+DELIMITER $
+
+CREATE FUNCTION ufn_is_word_comprised(set_of_letters VARCHAR(50), word VARCHAR(50))
+RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+RETURN word REGEXP CONCAT('^[' , set_of_letters , ']*$');
+END$
+
+DELIMITER ;
+
+SELECT ufn_is_word_comprised ('bobr', 'Rob')
