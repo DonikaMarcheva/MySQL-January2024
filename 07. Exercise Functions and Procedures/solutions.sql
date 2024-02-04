@@ -167,3 +167,25 @@ END$
 DELIMITER ;
 
 CALL usp_get_holders_full_name ();
+
+#9
+DELIMITER $
+
+CREATE PROCEDURE usp_get_holders_with_balance_higher_than (amount DECIMAL(20,4))
+BEGIN
+SELECT first_name, last_name
+FROM account_holders a_h
+JOIN accounts a ON a.account_holder_id=a_h.id
+WHERE amount<
+(SELECT SUM(balance) 
+FROM accounts
+WHERE account_holder_id= a_h.id
+GROUP BY account_holder_id)
+GROUP BY a_h.id
+ORDER BY a.account_holder_id;
+END$
+
+DELIMITER ;
+DROP PROCEDURE usp_get_holders_with_balance_higher_than;
+
+CALL usp_get_holders_with_balance_higher_than (70000);
