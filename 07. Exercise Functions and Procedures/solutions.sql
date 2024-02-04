@@ -229,6 +229,26 @@ DELIMITER ;
 
 CALL usp_calculate_future_value_for_account(1,0.1);
 
+#12
+DELIMITER $
+CREATE PROCEDURE usp_deposit_money (account_id INT, money_amount DECIMAL(19, 4))
+BEGIN
+    START TRANSACTION;
+    IF (money_amount <= 0 OR 
+    (SELECT COUNT(*) FROM accounts WHERE id=account_id ) !=1) THEN
+        ROLLBACK ;
+    ELSE
+        UPDATE accounts AS a
+        SET a.balance= a.balance + money_amount
+        WHERE a.id = account_id;
+            COMMIT;
+    END IF;
+END $
+DELIMITER ;
+
+SELECT * FROM accounts WHERE id=1;
+CALL usp_deposit_money(1,10);
+
 
 
 
