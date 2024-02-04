@@ -153,3 +153,17 @@ END$
 DELIMITER ;
 
 SELECT ufn_is_word_comprised ('bobr', 'Rob')
+
+#8
+DELIMITER $
+
+CREATE PROCEDURE usp_get_holders_full_name ()
+BEGIN
+SELECT concat_ws(' ', first_name, last_name) AS full_name
+FROM account_holders
+ORDER BY full_name;
+END$
+
+DELIMITER ;
+
+CALL usp_get_holders_full_name ();
