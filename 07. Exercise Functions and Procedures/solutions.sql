@@ -186,6 +186,25 @@ ORDER BY a.account_holder_id;
 END$
 
 DELIMITER ;
-DROP PROCEDURE usp_get_holders_with_balance_higher_than;
 
 CALL usp_get_holders_with_balance_higher_than (70000);
+
+#10
+DELIMITER $
+CREATE FUNCTION ufn_calculate_future_value (initial DECIMAL(19,4), interest_rate DOUBLE,
+num_years INT) 
+RETURNS DECIMAL(19,4)
+READS SQL DATA
+BEGIN
+RETURN initial * POW(1+interest_rate, num_years);
+END $
+
+DELIMITER ;
+
+SELECT ufn_calculate_future_value(1000,0.5,5)
+
+
+
+
+
+
