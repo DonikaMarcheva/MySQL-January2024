@@ -272,6 +272,71 @@ SELECT * FROM accounts WHERE id=1;
 CALL usp_withdraw_money(1,210);
 
 #14
+DELIMITER $
+CREATE PROCEDURE usp_transfer_money(
+    from_account_id INT, to_account_id INT, money_amount DECIMAL(19, 4))
+BEGIN
+    IF money_amount > 0 
+        AND from_account_id != to_account_id 
+        AND (SELECT a.id 
+            FROM `accounts` AS a 
+            WHERE a.id = to_account_id) IS NOT NULL
+        AND (SELECT a.id 
+            FROM `accounts` AS a 
+            WHERE a.id = from_account_id) IS NOT NULL
+        AND (SELECT a.balance 
+            FROM `accounts` AS a 
+            WHERE a.id = from_account_id) >= money_amount
+    THEN
+        START TRANSACTION;
+        
+        UPDATE `accounts` AS a 
+        SET 
+            a.balance = a.balance + money_amount
+        WHERE
+            a.id = to_account_id;
+            
+        UPDATE `accounts` AS a 
+        SET 
+            a.balance = a.balance - money_amount
+        WHERE
+            a.id = from_account_id;
+        
+        IF (SELECT a.balance 
+            FROM `accounts` AS a 
+            WHERE a.id = from_account_id) < 0
+            THEN ROLLBACK;
+        ELSE
+            COMMIT;
+        END IF;
+    END IF;
+END $
+DELIMITER ;
+
+#15
+
+CREATE TABLE logs (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    account_id INT NOT NULL,
+    old_sum DECIMAL(19 , 4 ) NOT NULL,
+    new_sum DECIMAL(19 , 4 ) NOT NULL
+);
+
+DELIMITER $
+CREATE TRIGGER trigger_balance_update
+    AFTER UPDATE
+    ON accounts
+    FOR EACH ROW
+BEGIN
+    INSERT INTO logs(account_id, old_sum, new_sum) 
+    VALUES(old.id, old.balance, new.balance);
+END $
+
+DELIMITER ;
+
+CALL usp_deposit_money(1,10);
+SELECT * FROM logs;
+
 
 
 
