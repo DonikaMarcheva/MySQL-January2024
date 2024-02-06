@@ -1,3 +1,4 @@
+USE  universities_db;
 #1
 CREATE TABLE countries(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -69,3 +70,15 @@ CONCAT('Course ', `teacher_name`, REVERSE(description)),
 DAY(start_date)
 FROM courses
 WHERE id<=5;
+
+#3
+UPDATE universities 
+SET 
+    tuition_fee = tuition_fee + 300
+WHERE
+    id >= 5 AND id <= 12;
+    
+#4
+DELETE FROM universities 
+WHERE
+    number_of_staff IS NULL;
