@@ -82,3 +82,22 @@ WHERE
 DELETE FROM universities 
 WHERE
     number_of_staff IS NULL;
+    
+#---------------------------------------------------------------
+
+#5
+SELECT 
+    id, name, population, country_id
+FROM
+    cities
+ORDER BY population DESC;
+
+#6
+ SELECT 
+    first_name, last_name, age, phone, email
+FROM
+    students
+WHERE
+    age >= 21
+ORDER BY first_name DESC , email , id
+LIMIT 10;
