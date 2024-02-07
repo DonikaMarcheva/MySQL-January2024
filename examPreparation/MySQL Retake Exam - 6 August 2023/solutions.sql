@@ -1,5 +1,7 @@
 USE  real_estate_db;
+
 #1
+
 CREATE TABLE cities(
 id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(60) NOT NULL UNIQUE
@@ -68,5 +70,17 @@ FOREIGN KEY (property_id) REFERENCES properties(id),
 FOREIGN KEY (buyer_id) REFERENCES buyers(id)
 );
 
-#@
+#2
+
+INSERT INTO property_transactions(property_id, buyer_id, transaction_date, bank_name, iban, is_successful)
+SELECT
+agent_id + DAY(offer_datetime),
+agent_id + MONTH(offer_datetime),
+DATE(offer_datetime),
+CONCAT_WS(' ', 'Bank',agent_id ),
+CONCAT('BG', price, agent_id),
+1
+FROM property_offers
+WHERE agent_id<=2;
+
 
