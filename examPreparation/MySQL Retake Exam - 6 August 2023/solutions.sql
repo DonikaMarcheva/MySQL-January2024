@@ -90,4 +90,13 @@ SET
     price = price - 50000
 WHERE
     price >= 800000;
+    
+    
+#4
+
+DELETE FROM property_transactions 
+WHERE
+    is_successful = 0;
+
+
 
