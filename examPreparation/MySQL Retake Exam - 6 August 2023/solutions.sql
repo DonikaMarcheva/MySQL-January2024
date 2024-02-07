@@ -83,4 +83,11 @@ CONCAT('BG', price, agent_id),
 FROM property_offers
 WHERE agent_id<=2;
 
+#3
+
+UPDATE properties 
+SET 
+    price = price - 50000
+WHERE
+    price >= 800000;
 
