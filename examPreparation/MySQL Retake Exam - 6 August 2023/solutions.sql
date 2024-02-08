@@ -147,3 +147,51 @@ FROM
 GROUP BY bank_name
 HAVING `count` >= 9
 ORDER BY `count` DESC , bank_name;
+
+#9
+
+    SELECT 
+    address,
+    area,
+    CASE
+        WHEN area <= 100 THEN 'small'
+        WHEN area <= 200 THEN 'medium'
+        WHEN area <= 500 THEN 'large'
+        ELSE 'extra large'
+    END AS size
+FROM
+    properties
+ORDER BY area , address DESC;
+
+#10
+DELIMITER $
+
+CREATE FUNCTION udf_offers_from_city_name (cityName VARCHAR(50))
+RETURNS INT
+DETERMINISTIC
+BEGIN 
+RETURN 
+(SELECT COUNT(*) AS 'offers_count'
+FROM property_offers po
+JOIN properties p ON p.id=po.property_id
+JOIN cities c ON c.id=p.city_id
+WHERE c.name= cityName
+GROUP BY p.city_id);
+END$
+
+DELIMITER ;
+
+#11
+DELIMITER $
+
+CREATE PROCEDURE udp_special_offer (first_name VARCHAR(50))
+BEGIN
+UPDATE property_offers po
+JOIN agents a ON agent_id=po.agent_id
+SET po.price=po.price-0.1*po.price
+WHERE a.first_name=first_name;
+END$
+
+DELIMITER ;
+CALL udp_special_offer('Hans');
+
