@@ -118,5 +118,32 @@ WHERE
 ORDER BY price
 LIMIT 10;
 
+#7
 
+SELECT a.first_name, po.price
+FROM property_offers po
+LEFT JOIN agents a ON a.id=po.agent_id
+ORDER BY a.first_name DESC, price DESC;
 
+#7
+
+SELECT 
+    LEFT(p.address, 6) AS agent_name,
+    LENGTH(p.address) * 5430 AS price
+FROM
+    properties p
+        LEFT JOIN
+    property_offers po ON po.property_id = p.id
+WHERE
+    agent_id IS NULL
+ORDER BY agent_name DESC , price DESC;
+
+#8
+
+SELECT 
+    bank_name, COUNT(iban) AS `count`
+FROM
+    property_transactions
+GROUP BY bank_name
+HAVING `count` >= 9
+ORDER BY `count` DESC , bank_name;
