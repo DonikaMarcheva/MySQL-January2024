@@ -87,4 +87,12 @@ FROM waiters w
 	LEFT JOIN orders o ON w.id = o.waiter_id
 WHERE o.waiter_id IS NULL;
 
+#--------------------------
 
+#5
+
+SELECT 
+    id, first_name, last_name, birthdate, card, review
+FROM
+    clients
+ORDER BY birthdate DESC , id DESC; 
