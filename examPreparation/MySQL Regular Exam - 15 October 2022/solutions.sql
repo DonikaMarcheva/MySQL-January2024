@@ -110,3 +110,17 @@ WHERE
 ORDER BY last_name DESC , id
 LIMIT 5;
 
+#7
+
+SELECT 
+    CONCAT(last_name,
+            first_name,
+            LENGTH(first_name),
+            'Restaurant') AS username,
+    REVERSE(SUBSTR(email, 2, 12)) AS password
+FROM
+    waiters
+WHERE
+    salary IS NOT NULL
+ORDER BY password DESC;
+
