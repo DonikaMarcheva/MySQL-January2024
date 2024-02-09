@@ -72,5 +72,19 @@ CEIL(0.01*salary)
 FROM waiters
 WHERE id>6 AND (salary is NOT NULL);
 
+#3
+
+UPDATE orders 
+SET 
+    table_id = table_id - 1
+WHERE
+    id >= 12 AND id <= 23;
+    
+#4
+
+DELETE w
+FROM waiters w
+	LEFT JOIN orders o ON w.id = o.waiter_id
+WHERE o.waiter_id IS NULL;
 
 
