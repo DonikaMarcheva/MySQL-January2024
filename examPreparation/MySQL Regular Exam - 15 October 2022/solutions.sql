@@ -62,5 +62,15 @@ FOREIGN KEY (order_id) REFERENCES orders(id),
 FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
+#2
+
+INSERT INTO products(name , type , price )
+SELECT
+CONCAT(last_name, ' ', 'specialty'),
+'Cocktail',
+CEIL(0.01*salary)
+FROM waiters
+WHERE id>6 AND (salary is NOT NULL);
+
 
 
